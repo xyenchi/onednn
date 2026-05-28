@@ -118,6 +118,15 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
     endif()
 endif()
 
+if(DNNL_TARGET_ARCH STREQUAL "RV64")
+    file(GLOB FILES_WITH_REDUCED_OPT
+        ${CMAKE_CURRENT_SOURCE_DIR}/reorder/cpu_reorder_comp_*_s8.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/reorder/cpu_reorder_regular_*.cpp
+    )
+    set_source_files_properties(${FILES_WITH_REDUCED_OPT}
+        PROPERTIES COMPILE_FLAGS "-O0")
+endif()
+
 if(DNNL_WITH_SYCL)
     if(DNNL_CPU_RUNTIME MATCHES "^(DPCPP|SYCL)$")
         add_subdirectory(sycl)

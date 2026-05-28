@@ -192,7 +192,7 @@ set(DNNL_ARCH_OPT_FLAGS "HostOpts" CACHE STRING
       behaves similarly to the description above.
 
     - For Clang and GCC compilers on RISC-V architecture this option accepts `-march=<ISA-string>` flag
-      to control wthether or not oneDNN should be compiled with RVV Intrinsics. Use this option with
+      to control whether oneDNN should be compiled with RVV Intrinsics. Use this option with
       `-march=rv64gc` or `-march=rv64gcv` value to compile oneDNN with and without RVV Intrinsics respectively.
       If the option is not provided, CMake will decide based on the active toolchain and compiler flags.
 

@@ -123,7 +123,7 @@ if (DNNL_TARGET_ARCH STREQUAL "RV64")
     # Check if the RVV Intrinsics can be compiled with the current toolchain and flags
     set(ARCH_SIMD_TEST_FLAGS "-march=rv64gcv")
     set(CMAKE_REQUIRED_FLAGS_SAVE ${CMAKE_REQUIRED_FLAGS})
-    set(CMAKE_REQUIRED_FLAGS "${ARCH_SIMD_TEST_FLAGS}")
+    set(CMAKE_REQUIRED_FLAGS "${CMAKE_REQUIRED_FLAGS_SAVE} ${ARCH_SIMD_TEST_FLAGS}")
     include(CheckCXXSourceCompiles)
     check_cxx_source_compiles("#if !defined(__riscv) || !defined(__riscv_v)
                                #error \"RISC-V or vector extension(RVV) is not supported by the compiler\"
@@ -146,7 +146,7 @@ if (DNNL_TARGET_ARCH STREQUAL "RV64")
         # RVV is supported, now check for Zvfh (which depends on V)
         set(ARCH_SIMD_TEST_FLAGS "-march=rv64gcv_zvfh")
         set(CMAKE_REQUIRED_FLAGS_SAVE ${CMAKE_REQUIRED_FLAGS})
-        set(CMAKE_REQUIRED_FLAGS "${ARCH_SIMD_TEST_FLAGS}")
+        set(CMAKE_REQUIRED_FLAGS "${CMAKE_REQUIRED_FLAGS_SAVE} ${ARCH_SIMD_TEST_FLAGS}")
         check_cxx_source_compiles("#include <riscv_vector.h>
                                    #ifndef __riscv_zvfh
                                    #error \"Zvfh extension is not supported by the compiler\"
